@@ -1,0 +1,25 @@
+<!Doctype html>
+
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <title>Tech Blog Application</title>
+</head>
+<body>
+<h1>All Technical Posts</h1>
+<!--iterate through the posts list and render each post object into table. as the model changes, the view shall also change dynamically-->
+<main id="blogList">
+    <!--list 2 tag is dummy just for code readability-->
+    <list2 th:each="p : ${blogList}">
+        <h2 th:text="${p.title}"></h2>
+
+        <i>Posted On: </i> <span th:text="${p.date}"></span>
+
+
+        <!--note when div is used-->
+        <div>
+            <p th:text="${p.body}"></p>
+        </div>
+    </list2>
+</main>
+</body>
+</html>
