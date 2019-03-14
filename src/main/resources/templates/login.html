@@ -1,0 +1,27 @@
+<html xmlns:th="http://thymeleaf.org">
+
+<head th:replace="layout :: site-head">
+    <title>Spring MVC Application - Login</title>
+</head>
+
+<header th:replace="layout :: logged-out"></header>
+
+<h2>Please Login:</h2>
+
+<!--note how event is managed after clicking on submit button, and how a model gets defined. Model name should be same as class-->
+<form method="post" th:object="${User}">
+    <label for="username">Username:</label>
+    <input type="text" id="username" />
+    <label for="password">Password:</label>
+    <input type="password" id="password" />
+    <input type="submit" value="Login"/>
+</form>
+
+<!--above each field has to be mapped to the correct name and label -->
+<!--in order to ensure that you get your data in the right format.-->
+
+
+<!--note:  POST  is used to send a request to the server to create new data,
+and GET is used to read or retrieve some existing data from the server.-->
+
+</html>
