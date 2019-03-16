@@ -8,6 +8,16 @@
             <set />
           </value>
         </entry>
+        <entry key="/a.dummy">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/technicalblog/Model/NewUser.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/technicalblog/Model/User.java">
           <value>
             <set />
@@ -19,6 +29,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/main/java/technicalblog/Service/UserBlogService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/technicalblog/Service/UserLoginService.java">
           <value>
             <set />
           </value>

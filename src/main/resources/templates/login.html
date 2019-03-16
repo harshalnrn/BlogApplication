@@ -4,19 +4,20 @@
     <title>Spring MVC Application - Login</title>
 </head>
 
-<header th:replace="layout :: logged-out"></header>
+<!--<header th:replace="layout :: logged-out"></header>-->
 
 <h2>Please Login:</h2>
 
 <!--note how event is managed after clicking on submit button, and how a model gets defined. Model name should be same as class-->
 <form method="post" th:object="${User}">
     <label for="username">Username:</label>
-    <input type="text" id="username" />
+    <input type="text" id="username" name="username" />
     <label for="password">Password:</label>
-    <input type="password" id="password" />
+    <input type="password" id="password" name="password" />
     <input type="submit" value="Login"/>
 </form>
 
+<!--note how name attribute inside input, maps form value, into field of object User. (note: same names to be used))-->
 <!--above each field has to be mapped to the correct name and label -->
 <!--in order to ensure that you get your data in the right format.-->
 
