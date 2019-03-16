@@ -12,10 +12,8 @@ import java.util.ArrayList;
 
 @Controller
 public class UserBlogController {
-
-//        @Autowired
-//        private UserBlogService postService;
-
+    @Autowired
+ private UserBlogService postService;
 
     public UserBlogController() {
         System.out.println("user blog controlller object created");
@@ -23,18 +21,20 @@ public class UserBlogController {
 
     @RequestMapping("posts")
         public String getUserPosts(Model model) {
-         /*   UserBlogService postService=new UserBlogService();
-            ArrayList<Post> posts = postService.getOnePost();
-            model.addAttribute("posts", posts);*/
+            ArrayList<Post> posts = postService.getPosts();
+            model.addAttribute("posts", posts);
             return "blogs";
         }
 
     @RequestMapping(value="createPost", method= RequestMethod.POST)
     public String createNewBlog(Model model) {
-         /*   UserBlogService postService=new UserBlogService();
-            ArrayList<Post> posts = postService.getOnePost();
-            model.addAttribute("posts", posts);*/
         return "newBlog";
+    }
+
+    @RequestMapping(value = "create", method = RequestMethod.POST)
+    public String createPost(Post newPost) {
+      postService.createBlog(newPost);
+        return "redirect:/posts";
     }
 
 

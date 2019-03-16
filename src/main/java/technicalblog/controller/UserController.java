@@ -47,7 +47,7 @@ return "redirect:/users/login1";
 
     @RequestMapping(value="users/logout", method=RequestMethod.POST)
     public String logoutUser(Model model){
-return "redirect:/";
+        return "redirect:/";
     }
 
 
