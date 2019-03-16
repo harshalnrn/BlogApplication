@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import technicalblog.Model.Post;
 import technicalblog.Service.UserBlogService;
 
@@ -27,6 +28,14 @@ public class UserBlogController {
             model.addAttribute("posts", posts);*/
             return "blogs";
         }
+
+    @RequestMapping(value="createPost", method= RequestMethod.POST)
+    public String createNewBlog(Model model) {
+         /*   UserBlogService postService=new UserBlogService();
+            ArrayList<Post> posts = postService.getOnePost();
+            model.addAttribute("posts", posts);*/
+        return "newBlog";
+    }
 
 
 }

@@ -18,6 +18,15 @@
     </form>
 </header>
 </header>
+
+    <header th:fragment="createPost" th:remove="tag">
+        <header>
+            <form method ="post" th:action="@{createPost}">
+                <!--end point url called event-->
+                <input type="submit" value="CreateNewBlog"/>
+            </form>
+        </header>
+</header>
 </body>
 
 </html>
