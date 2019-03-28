@@ -64,4 +64,10 @@ public class UserBlogService {
         dao.updateBlog(id, postEntity);
 
     }
+
+    public void deletePost(Integer id) {
+
+        UserBlogDao dao = new UserBlogDao();
+        dao.deleteBlog(id);
+    }
 }

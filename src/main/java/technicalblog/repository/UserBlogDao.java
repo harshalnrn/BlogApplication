@@ -64,5 +64,23 @@ public class UserBlogDao {
         }
 
     }
+
+    public void deleteBlog(Integer id) {
+        JpaConfig config = new JpaConfig();
+        emf = config.entityManagerFactory();
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction transaction = em.getTransaction();       //understand why Transaction required, and whether exception block is necessary
+        //understand why persist along with transaction is safe
+        try {
+            transaction.begin();
+            PostEntity postEntity = em.find(PostEntity.class, id);
+            em.remove(postEntity);
+            transaction.commit();
+        } catch (Exception e) {
+            transaction.rollback();
+        }
+
+
+    }
 }
 

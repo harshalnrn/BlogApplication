@@ -23,7 +23,7 @@ public class UserBlogController {
         System.out.println("user blog controlller object created");
     }
 
-    @RequestMapping("posts")
+    @RequestMapping(value = "posts", method = RequestMethod.GET)
     public String getUserPosts(Model model) {
         List<Post> posts = postService.getPosts();
         model.addAttribute("posts", posts);
@@ -48,10 +48,16 @@ public class UserBlogController {
         return "editBlog.html";
     }
 
-    @RequestMapping(value = "editPost", method = RequestMethod.POST)
+    @RequestMapping(value = "editPost", method = RequestMethod.PUT)
     public String editPost(@RequestParam(name = "postId") Integer postId, Post post) {
         post.setId(postId);
         postService.updatePost(postId, post);
+        return "redirect:/posts";
+    }
+
+    @RequestMapping(value = "deletePost", method = RequestMethod.GET)
+    public String deletePost(@RequestParam(name = "postId") Integer postId) {
+        postService.deletePost(postId);
         return "redirect:/posts";
     }
 
