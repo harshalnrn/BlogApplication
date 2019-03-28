@@ -7,12 +7,12 @@ import org.springframework.context.annotation.ComponentScan;
 
 
 //note the deprecated annotations from older versions, and how they have evolved in spring boot
-@SpringBootApplication
+@SpringBootApplication()
 @EnableAutoConfiguration
 @ComponentScan
 public class TechnicalBlogApplication {
 
-    public static void main(String [] args){
+    public static void main(String[] args) {
         SpringApplication.run(TechnicalBlogApplication.class, args);
     }
 

@@ -7,6 +7,15 @@ public class Post {
     private String title;
     private String body;
     private Date date;
+    private Integer id;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public void setTitle(String title) {
         this.title = title;

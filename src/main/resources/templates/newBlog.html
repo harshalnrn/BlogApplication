@@ -11,9 +11,9 @@
 <body>
 <h1>Create New Post</h1>
 
-<form method="post" th:action="@{create}">
+<form method="post" th:action="@{create}" th:object="${Post}">
     <div>Post Title:</div>
-    <div><input type="text" id="title" name="title" /></div>
+    <div><input type="text" id="title" name="title"/></div>
 
     <div>Description:</div>
 
