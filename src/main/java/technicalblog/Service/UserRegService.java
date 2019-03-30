@@ -1,18 +1,29 @@
 package technicalblog.Service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import technicalblog.Model.NewUser;
+import technicalblog.Entity.UserEntity;
+import technicalblog.Entity.UserProfileEntity;
+import technicalblog.Model.User;
+import technicalblog.repository.UserRegDao;
 
 @Service
 public class UserRegService {
 
-    public void registerNewUser(NewUser newUser) {
+    @Autowired
+    UserRegDao userRegDao;
 
-        System.out.println("new user registration details are as follows:");
-        System.out.println("full name" + newUser.getFullName());
-        System.out.println("username" + newUser.getUser().getUsername());
-        System.out.println("password" + newUser.getUser().getPassword());
+    public void registerNewUser(User user) {
 
+        UserEntity userEntity = new UserEntity();
+        UserProfileEntity userProfileEntity = new UserProfileEntity();
+        userEntity.setUserProfileEntity(userProfileEntity);
+        userEntity.setPassword(user.getPassword());
+        userEntity.setUsername(user.getUsername());
+        userEntity.getUserProfileEntity().setEmailAddress(user.getUserProfile().getEmailAddress());
+        userEntity.getUserProfileEntity().setFullName(user.getUserProfile().getFullName());
+        userEntity.getUserProfileEntity().setMobileNumber(user.getUserProfile().getMobileNumber());
+        userRegDao.registerUser(userEntity);
 
     }
 }

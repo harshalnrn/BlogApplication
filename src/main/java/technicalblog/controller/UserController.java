@@ -5,8 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import technicalblog.Model.NewUser;
 import technicalblog.Model.User;
+import technicalblog.Model.UserProfile;
 import technicalblog.Service.UserLoginService;
 import technicalblog.Service.UserRegService;
 
@@ -24,7 +24,14 @@ public class UserController {
     }
 
     @RequestMapping("users/registration")
-    public String registration() {
+    public String registration(Model model) {
+
+        User user = new User();
+        UserProfile profile = new UserProfile();
+        user.setUserProfile(profile);
+
+        model.addAttribute("User", user);
+
         return "registration";
     }
 
@@ -37,9 +44,9 @@ public class UserController {
             return "redirect:/users/login1";
     }
 
-    @RequestMapping(value = "/users/registration", method = RequestMethod.POST)
-    public String regUser(NewUser newUser) {
-        userRegService.registerNewUser(newUser);
+    @RequestMapping(value = "users/registration", method = RequestMethod.POST)
+    public String regUser(User user) {
+        userRegService.registerNewUser(user);
         return "redirect:/users/login1";
     }
 

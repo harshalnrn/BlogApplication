@@ -6,6 +6,7 @@ public class User {
 
     private String username1;
     private String password1;
+    private UserProfile userProfile;
 
     public String getUsername() {
         return username1;
@@ -21,5 +22,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password1 = password;
+    }
+
+    public UserProfile getUserProfile() {
+        return userProfile;
+    }
+
+    public void setUserProfile(UserProfile userProfile) {
+        this.userProfile = userProfile;
     }
 }

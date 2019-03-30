@@ -1,5 +1,6 @@
 package technicalblog.repository;
 
+import org.springframework.stereotype.Repository;
 import technicalblog.Entity.PostEntity;
 import technicalblog.config.JpaConfig;
 
@@ -8,7 +9,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-//@Repository
+@Repository
 public class BlogDao {
 
     List<PostEntity> list = null;

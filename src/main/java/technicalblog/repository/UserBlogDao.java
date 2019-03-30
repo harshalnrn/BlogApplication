@@ -1,5 +1,6 @@
 package technicalblog.repository;
 
+import org.springframework.stereotype.Repository;
 import technicalblog.Entity.PostEntity;
 import technicalblog.config.JpaConfig;
 
@@ -8,6 +9,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceUnit;
 
+@Repository
 public class UserBlogDao {
 
     @PersistenceUnit(unitName = "bloggingApplication")
@@ -82,5 +84,21 @@ public class UserBlogDao {
 
 
     }
+
+    /* public void deletePost(String postTitle) {*//*
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction transaction = em.getTransaction();
+
+        try {
+            transaction.begin();
+            TypedQuery<PostEntity> query = em.createQuery("SELECT p FROM PostEntity p WHERE title =:title",PostEntity.class);
+            query.setParameter("title",postTitle);
+            PostEntity post = query.getSingleResult();
+            em.remove(post);
+            transaction.commit();
+        }catch(Exception e) {
+            transaction.rollback();
+        }
+    }*/
 }
 
