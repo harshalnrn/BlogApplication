@@ -1,8 +1,10 @@
 package technicalblog.Service;
 
 import org.springframework.stereotype.Service;
+import technicalblog.Entity.Category_Entity;
 import technicalblog.Entity.PostEntity;
 import technicalblog.Entity.UserEntity;
+import technicalblog.Model.Category;
 import technicalblog.Model.Post;
 import technicalblog.repository.BlogDao;
 import technicalblog.repository.UserBlogDao;
@@ -38,7 +40,18 @@ public class UserBlogService {
     public void createBlog(Post post) {
         PostEntity postEntity = new PostEntity();
         UserEntity userEntity = new UserEntity();
+        Category_Entity category_entity = new Category_Entity();
         userEntity.setId(post.getUser().getUser_id());
+        for (Category obj : post.getCategories()) {
+            category_entity.setCategory(obj.getCategory());
+            postEntity.getCategories().add(category_entity);
+        }
+        if (post.getSpringBlog() != null) {
+            postEntity.setSpringBlog(post.getSpringBlog());
+        }
+        if (post.getJavaBlog() != null) {
+            postEntity.setJavaBlog(post.getJavaBlog());
+        }
         postEntity.setUserEntity(userEntity); //fk key of postEntity shall get value of pk of userEntity
         postEntity.setBody(post.getBody());
         postEntity.setTitle(post.getTitle());

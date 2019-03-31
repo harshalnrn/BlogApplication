@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import technicalblog.Model.Category;
 import technicalblog.Model.Post;
 import technicalblog.Model.User;
 import technicalblog.Service.BlogService;
@@ -43,7 +44,22 @@ public class UserBlogController {
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public String createPost(Post newPost, HttpSession httpSession) {
         User user = (User) httpSession.getAttribute("loggedUser");
-        newPost.setUser(user);
+        newPost.setUser(user); //associating post with user
+        //associating post with category
+        if (newPost.getJavaBlog() != null) {
+
+            Category category = new Category();
+            category.setCategory(newPost.getJavaBlog());
+            newPost.getCategories().add(category);
+        }
+
+        if (newPost.getSpringBlog() != null) {
+            Category category = new Category();
+            category.setCategory(newPost.getSpringBlog());
+            newPost.getCategories().add(category);
+        }
+
+
         postService.createBlog(newPost);
         return "redirect:/posts";
     }

@@ -1,7 +1,9 @@
 package technicalblog.Entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "posts")
@@ -23,6 +25,38 @@ public class PostEntity {
     //Here we dont want to persist userEntity, hence no cascade
     @JoinColumn(name = "user_id")    //note: the column naming syntax here is very important, else result in exceptions
     private UserEntity userEntity;  //value of user-id would be PK value of userEntity object*/
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Category_Entity> categories = new ArrayList<>();    //1 post can have mutiple categories, hence list. Here categories entity is the foreign table
+
+    @Transient
+    private String springBlog;    //The @Transient annotation is used to specify that these attributes are not mapped to any columns in the database
+    @Transient
+    private String javaBlog;
+
+    public String getSpringBlog() {
+        return springBlog;
+    }
+
+    public void setSpringBlog(String springBlog) {
+        this.springBlog = springBlog;
+    }
+
+    public String getJavaBlog() {
+        return javaBlog;
+    }
+
+    public void setJavaBlog(String javaBlog) {
+        this.javaBlog = javaBlog;
+    }
+
+    public List<Category_Entity> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category_Entity> categories) {
+        this.categories = categories;
+    }
 
     public int getId() {
         return id;

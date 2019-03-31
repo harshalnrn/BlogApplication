@@ -1,6 +1,8 @@
 package technicalblog.Model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Post {
 
@@ -9,6 +11,33 @@ public class Post {
     private Date date;
     private Integer id;
     private User user;
+    private List<Category> categories = new ArrayList<>();
+    private String springBlog;    //The @Transient annotation is used to specify that these attributes are not mapped to any columns in the database
+    private String javaBlog;
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
+
+    public String getSpringBlog() {
+        return springBlog;
+    }
+
+    public void setSpringBlog(String springBlog) {
+        this.springBlog = springBlog;
+    }
+
+    public String getJavaBlog() {
+        return javaBlog;
+    }
+
+    public void setJavaBlog(String javaBlog) {
+        this.javaBlog = javaBlog;
+    }
 
     public User getUser() {
         return user;
