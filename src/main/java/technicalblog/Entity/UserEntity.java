@@ -1,6 +1,8 @@
 package technicalblog.Entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -17,6 +19,17 @@ public class UserEntity {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "profile_id")//Foreign key column , that takes primary key value
     private UserProfileEntity userProfileEntity; //thus user table also gets populated with object data along with Foreign keytable b having foreign key and refers to a. This mean A has B
+
+    @OneToMany(mappedBy = "userEntity", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    private List<PostEntity> list = new ArrayList<>();
+
+    public List<PostEntity> getList() {
+        return list;
+    }
+
+    public void setList(List<PostEntity> list) {
+        this.list = list;
+    }
 
     public Integer getId() {
         return id;

@@ -15,19 +15,20 @@ public class UserLoginDao {
     @Autowired
     JpaConfig jpaConfig;
 
-    public boolean checkLogin(User user) {
-        boolean flag = true;
+    public UserEntity checkLogin(User user) {
+        UserEntity userEntity = null;
         EntityManagerFactory emf = jpaConfig.entityManagerFactory();
         EntityManager em = emf.createEntityManager();
-        TypedQuery<UserEntity> query = em.createQuery("select u from UserEntity u where username=:username AND password=:value", UserEntity.class);
+        TypedQuery<UserEntity> query = em.createQuery("select u from UserEntity u where u.username=:username AND u.password=:value", UserEntity.class);
         query.setParameter("username", user.getUsername());
         query.setParameter("value", user.getPassword());
         try {
-            UserEntity userEntity1 = query.getSingleResult();
-        } catch (Exception e) {
-            flag = false;
-        }
+            userEntity = query.getSingleResult();
 
-        return flag;
+        } catch (Exception e) {
+
+        }
+        return userEntity;
+
     }
 }

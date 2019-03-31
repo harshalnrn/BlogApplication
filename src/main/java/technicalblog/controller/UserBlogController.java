@@ -7,9 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import technicalblog.Model.Post;
+import technicalblog.Model.User;
 import technicalblog.Service.BlogService;
 import technicalblog.Service.UserBlogService;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -24,9 +26,12 @@ public class UserBlogController {
     }
 
     @RequestMapping(value = "posts", method = RequestMethod.GET)
-    public String getUserPosts(Model model) {
-        List<Post> posts = postService.getPosts();
+    public String getUserPosts(Model model, HttpSession httpSession) {
+        User user = (User) httpSession.getAttribute("loggedUser");
+        List<Post> posts = postService.getPosts(user.getUser_id());
         model.addAttribute("posts", posts);
+
+
         return "blogs";
     }
 
@@ -36,7 +41,9 @@ public class UserBlogController {
     }
 
     @RequestMapping(value = "create", method = RequestMethod.POST)
-    public String createPost(Post newPost) {
+    public String createPost(Post newPost, HttpSession httpSession) {
+        User user = (User) httpSession.getAttribute("loggedUser");
+        newPost.setUser(user);
         postService.createBlog(newPost);
         return "redirect:/posts";
     }

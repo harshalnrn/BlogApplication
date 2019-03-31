@@ -27,11 +27,12 @@ public class BlogDao {
         return postEntity;
     }
 
-    public List<PostEntity> getAllBlogs() {
+    public List<PostEntity> getAllBlogs(Integer userId) {
         JpaConfig config = new JpaConfig();
         em = config.entityManagerFactory();
         manager = em.createEntityManager();
-        TypedQuery<PostEntity> query = manager.createQuery("select p from PostEntity p", PostEntity.class);
+        TypedQuery<PostEntity> query = manager.createQuery("select p from PostEntity p where p.userEntity.id=:userId", PostEntity.class);
+        query.setParameter("userId", userId);
         List<PostEntity> list = query.getResultList();
         return list;
     }

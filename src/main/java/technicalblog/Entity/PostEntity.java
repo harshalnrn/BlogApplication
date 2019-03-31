@@ -19,6 +19,11 @@ public class PostEntity {
     @Column(name = "date")
     private Date date; //you need to make this transient
 
+    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+    //Here we dont want to persist userEntity, hence no cascade
+    @JoinColumn(name = "user_id")    //note: the column naming syntax here is very important, else result in exceptions
+    private UserEntity userEntity;  //value of user-id would be PK value of userEntity object*/
+
     public int getId() {
         return id;
     }
@@ -52,30 +57,20 @@ public class PostEntity {
         return body;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public UserEntity getUserEntity() {
+        return userEntity;
+    }
+
+    public void setUserEntity(UserEntity userEntity) {
+        this.userEntity = userEntity;
+    }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   /* DbConnection conn = null;
+/* DbConnection conn = null;
     ResultSet resultSet;
     List<Post> list = null;
 

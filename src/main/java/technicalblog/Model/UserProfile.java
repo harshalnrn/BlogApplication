@@ -1,9 +1,19 @@
 package technicalblog.Model;
 
 public class UserProfile {
+    private Integer profile_id;
     private String fullName;
     private String emailAddress;
     private String mobileNumber;
+
+
+    public Integer getProfile_id() {
+        return profile_id;
+    }
+
+    public void setProfile_id(Integer profile_id) {
+        this.profile_id = profile_id;
+    }
 
     public String getFullName() {
         return fullName;

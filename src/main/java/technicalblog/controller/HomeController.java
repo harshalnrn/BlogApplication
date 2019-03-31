@@ -35,6 +35,7 @@ public class HomeController {
 
         // BlogService blog=new BlogService();
         //List<Post>list=blog.getAllBlogs();
+
         Post post = blog.getAllBlogs();
         List<Post> list = new ArrayList<Post>();
         list.add(post);

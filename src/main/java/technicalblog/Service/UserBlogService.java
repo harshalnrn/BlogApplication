@@ -2,6 +2,7 @@ package technicalblog.Service;
 
 import org.springframework.stereotype.Service;
 import technicalblog.Entity.PostEntity;
+import technicalblog.Entity.UserEntity;
 import technicalblog.Model.Post;
 import technicalblog.repository.BlogDao;
 import technicalblog.repository.UserBlogDao;
@@ -18,10 +19,10 @@ public class UserBlogService {
         posts = new ArrayList<Post>();
     }
 
-    public List<Post> getPosts() {
+    public List<Post> getPosts(Integer user_id) {
         posts = new ArrayList<Post>();
         BlogDao blogDao = new BlogDao();
-        List<PostEntity> list = blogDao.getAllBlogs();
+        List<PostEntity> list = blogDao.getAllBlogs(user_id);
         for (PostEntity postEntity : list) {
             Post post = new Post();
             post.setTitle(postEntity.getTitle());
@@ -36,6 +37,9 @@ public class UserBlogService {
 
     public void createBlog(Post post) {
         PostEntity postEntity = new PostEntity();
+        UserEntity userEntity = new UserEntity();
+        userEntity.setId(post.getUser().getUser_id());
+        postEntity.setUserEntity(userEntity); //fk key of postEntity shall get value of pk of userEntity
         postEntity.setBody(post.getBody());
         postEntity.setTitle(post.getTitle());
         postEntity.setDate(new Date());
